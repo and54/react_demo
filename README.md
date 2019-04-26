@@ -1,6 +1,6 @@
-#Demo for GE
+# Demo for GE
 
-##Instructions
+## Instructions
 
 It is recomended to run in **VS Code** and have instaled **Git** as version controller and **NPM** as package manager
 
