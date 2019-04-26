@@ -1,0 +1,35 @@
+.task {
+  margin: 12px;
+  padding: 6px;
+  padding-left: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.task>* {
+  align-items: center;  
+}
+.task-name {
+  width: 70%;
+  flex-grow: 30;
+}
+.dates {
+  width: 30%;
+  padding-bottom: 6px;
+  padding-right: 6px; 
+  color: darkgray;
+}
+.icon {
+  cursor: pointer;
+  width: 20px;
+  flex-grow: 1;
+  color: darkgray;
+  -webkit-transition-duration: 0.4s; 
+  transition-duration: 0.4s;
+}
+.green:hover {
+  color: rgb(72, 255, 0);
+}
+.red:hover {
+  color: #ff0037;
+}

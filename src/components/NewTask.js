@@ -1,21 +1,47 @@
 import React, { Component } from 'react';
+import EventBus from '../services/EventBus';
+import moment from 'moment';
 import "./NewTask.css";
 
 export default class NewTask extends Component {
-  constructor() {
-    super();
+
+  closeNewTask = () => {
+    EventBus.eventEmitter.emit('newTaskValue', false);
   }
 
-  render() {
-    return (
-      <div className="modal">
-        <div className="new-task shadow">
-          <label for="taskname">Task Name</label>
-          <input type="text" id="taskname" name="taskname" placeholder="Task name..." />
-          <label for="description">Description</label>
-          <textarea id="description" name="description" placeholder="Description..." />
+  createTask = () => {
+    const taskname = this.refs.taskname.value;
+    const description = this.refs.taskname.value;
+    const d = new Date();
+    console.log(d);
+    if (taskname && description) {
+      const task = {
+        taskname,
+        description,
+        showDescription: false,
+        state: 'new',
+        createdDate: moment(new Date()).format('MMM Do h:mm')
+      }
+      EventBus.createTask(task);
+      this.closeNewTask();
+    } else alert('Please add Task Name and Description to the task');
+  }
+
+  render = () => (
+    <div>
+      <div className="modal" onClick={this.closeNewTask} />
+      <div className="new-task shadow">
+        <div>
+          <label>Task Name</label>
+          <input type="text" ref="taskname" placeholder="Task name..." />
+          <label>Description</label>
+          <textarea ref="description" placeholder="Description..." />
+        </div>
+        <div className="right mt">
+          <button onClick={this.createTask}>Create Task</button>
         </div>
       </div>
-    )
-  }
+    </div>
+  )
+
 }

@@ -11,10 +11,18 @@
 }  
 .new-task {
   position: absolute;
-  margin: 0;
-  width: 340px;
+  padding: 16px;
+  width: 360px;
   top: 50%;
   left: 50%;
   z-index: 5;
-  transform: translate(-50%, -50%)
+  transform: translate(-50%, -50%);
+}
+.right {
+  text-align: right;
+}
+@media screen and (max-width: 410px) {
+  .new-task {
+    width: 100%;
+  }
 }
