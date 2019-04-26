@@ -60,13 +60,22 @@ button:focus {
   margin-right: auto;
 }
 .shadow {
+  -moz-box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+  -webkit-box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
   border-radius: 2px; 
   background: white;
 }
 .shadow:hover {
+  -moz-box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+.shadow-inverted {
+   -moz-box-shadow:    inset 0 2px 4px 0 rgba(0,0,0,0.2);
+   -webkit-box-shadow: inset 0 2px 4px 0 rgba(0,0,0,0.2);
+   box-shadow:         inset 0 2px 4px 0 rgba(0,0,0,0.2);
 }
 @media screen and (max-width: 960px) {
   .card {
