@@ -11,6 +11,7 @@ export default class EventBus {
   static removeTask = (index) => { this.tasks.splice(index, 1); }
   static updateTask = (index, prop, value) => {
     this.tasks[index][prop] = value;
+    //this.tasks = [...this.tasks];
   }
 
 }

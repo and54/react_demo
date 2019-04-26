@@ -12,14 +12,12 @@ export default class NewTask extends Component {
   createTask = () => {
     const taskname = this.refs.taskname.value;
     const description = this.refs.taskname.value;
-    const d = new Date();
-    console.log(d);
     if (taskname && description) {
       const task = {
         taskname,
         description,
         showDescription: false,
-        state: 'new',
+        status: 'new',
         createdDate: moment(new Date()).format('MMM Do h:mm')
       }
       EventBus.createTask(task);

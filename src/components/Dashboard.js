@@ -8,8 +8,9 @@ export default class Dashboard extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { showNewTask: false };
+    this.state = { showNewTask: false, tasksUpdated: 0 };
     EventBus.getEventEmitter().on('newTaskValue', this.newTaskValue);
+    EventBus.getEventEmitter().on('tasksUpdated', this.tasksUpdated);
   }
 
   openNewTask = () => {
@@ -18,6 +19,10 @@ export default class Dashboard extends Component {
 
   newTaskValue = (show = false) => {
     this.setState({ showNewTask: show });
+  }
+
+  tasksUpdated = () => {
+    this.setState({ tasksUpdated: ++this.tasksUpdated });
   }
 
   render = () => (
