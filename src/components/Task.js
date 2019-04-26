@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import EventBus from '../services/EventBus';
-import moment from 'moment';
 import './Task.css';
 
 export default class Task extends Component {
@@ -11,15 +10,13 @@ export default class Task extends Component {
   }
 
   startTask = () => {
-    const d = moment(new Date()).format('MMM Do h:mm');
-    EventBus.updateTask(this.state.index, 'startedDate', d);
+    EventBus.updateTask(this.state.index, 'startedDate', EventBus.actualDate());
     EventBus.updateTask(this.state.index, 'status', 'started');
     EventBus.eventEmitter.emit('tasksUpdated');
   }
 
   completeTask = () => {
-    const d = moment(new Date()).format('MMM Do h:mm');
-    EventBus.updateTask(this.state.index, 'completedDate', d);
+    EventBus.updateTask(this.state.index, 'completedDate', EventBus.actualDate());
     EventBus.updateTask(this.state.index, 'status', 'completed');
     EventBus.eventEmitter.emit('tasksUpdated');
   }
@@ -36,20 +33,24 @@ export default class Task extends Component {
 
   render = () => (
     <div className="shadow mt task">
-    <div className=" task-container">
-      <div className="task-name">{ this.state.task.taskname }</div>
-      { this.state.task.status === 'new' ? <div className="icon green tooltip" onClick={this.startTask}>
-        <span className="tooltiptext">Start Task</span>
-        <i className="material-icons">play_circle_filled</i>
-      </div> : null }
-      { this.state.task.status === 'started' ? <div className="icon green tooltip" onClick={this.completeTask}>
-        <span className="tooltiptext">Complete Task</span>
-        <i className="material-icons">check_circle</i>
-      </div> : null }
-      <div className="icon red tooltip" onClick={this.deleteTask}>
-        <span className="tooltiptext">Delete Task</span>
-        <i className="material-icons">cancel</i>
-      </div>
+
+      <div className=" task-container">
+        { this.state.task.status === 'completed' ? <div className="selected-green">
+          <i className="material-icons icon-right-space">done</i>
+        </div> : null }
+        <div className="task-name">{ this.state.task.taskname }</div>
+        { this.state.task.status === 'new' ? <div className="icon green tooltip" onClick={this.startTask}>
+          <span className="tooltiptext">Start Task</span>
+          <i className="material-icons">play_circle_filled</i>
+        </div> : null }
+        { this.state.task.status === 'started' ? <div className="icon green tooltip" onClick={this.completeTask}>
+          <span className="tooltiptext">Complete Task</span>
+          <i className="material-icons">check_circle</i>
+        </div> : null }
+        <div className="icon red tooltip" onClick={this.deleteTask}>
+          <span className="tooltiptext">Delete Task</span>
+          <i className="material-icons">cancel</i>
+        </div>
       </div>
       
       <div className=" task-container">
@@ -64,10 +65,16 @@ export default class Task extends Component {
         </div>: null }
         <div className="icon tooltip" onClick={this.showDescription}>
           <span className="tooltiptext">Show Description</span>
-          <i className="material-icons">keyboard_arrow_down</i>
+          <i className="material-icons">
+            { this.state.task.showDescription ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }
+          </i>
         </div>
       </div>
 
+      { this.state.task.showDescription ? 
+      <div className="shadow-inverted task-description">
+        { this.state.task.description }
+      </div> : null }
 
     </div>
   )

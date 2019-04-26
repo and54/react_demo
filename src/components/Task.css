@@ -1,7 +1,8 @@
 .task {
   margin: 12px;
   padding: 6px;
-  padding-left: 16px;
+  padding-left: 12px;
+  padding-right: 12px;
 }
 .task-container {
   display: flex;
@@ -14,6 +15,11 @@
 .task-name {
   width: 70%;
   flex-grow: 30;
+}
+.task-description {
+  padding: 8px; 
+  margin-top: 6px;
+  margin-bottom: 6px;
 }
 .dates {
   padding-bottom: 6px;
@@ -30,7 +36,10 @@
   text-align: right;
   flex-grow: 0.1;
 }
-.green:hover {
+.icon-right-space {
+  margin-right: 4px;
+}
+.green:hover, .selected-green {
   color: rgb(72, 255, 0);
 }
 .red:hover {

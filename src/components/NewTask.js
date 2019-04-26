@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import EventBus from '../services/EventBus';
-import moment from 'moment';
 import "./NewTask.css";
 
 export default class NewTask extends Component {
@@ -11,14 +10,14 @@ export default class NewTask extends Component {
 
   createTask = () => {
     const taskname = this.refs.taskname.value;
-    const description = this.refs.taskname.value;
+    const description = this.refs.description.value;
     if (taskname && description) {
       const task = {
         taskname,
         description,
         showDescription: false,
         status: 'new',
-        createdDate: moment(new Date()).format('MMM Do h:mm')
+        createdDate: EventBus.actualDate()
       }
       EventBus.createTask(task);
       this.closeNewTask();
@@ -33,7 +32,7 @@ export default class NewTask extends Component {
           <label>Task Name</label>
           <input type="text" ref="taskname" placeholder="Task name..." />
           <label>Description</label>
-          <textarea ref="description" placeholder="Description..." />
+          <textarea rows="3" ref="description" placeholder="Description..." />
         </div>
         <div className="right mt">
           <button onClick={this.createTask}>Create Task</button>
